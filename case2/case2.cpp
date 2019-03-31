@@ -14,16 +14,16 @@ using namespace chrono_literals;
 volatile int g_moo = 10;
 const int TotalWorkCount = 100000000;
 
-void Func2(shared_ptr<int64_t>& a, shared_ptr<int64_t>& b);
+void Func2(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b);
 
-void Func1(shared_ptr<int64_t>& a, shared_ptr<int64_t>& b)
+void Func1(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b)
 {
 	(*a)++;
 	(*b)++;
 	Func2(a, b);
 }
 
-void Func2(shared_ptr<int64_t>& a, shared_ptr<int64_t>& b)
+void Func2(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b)
 {
 	(*a) += g_moo;
 	(*b) += g_moo;
