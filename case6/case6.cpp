@@ -14,18 +14,30 @@ using namespace chrono_literals;
 volatile int g_moo = 10;
 const int TotalWorkCount = 100000000;
 
-// #TODO 1. shared_ptr을 byvalue로 주고 받는 것과 byref를 주고 받는 것의 차이를 알아보자.
+// #TODO const shared_ptr& 대신에 쌩 ptr로 바꿔서 실행해보자.
 
-void Func2(shared_ptr<int64_t> a, shared_ptr<int64_t> b);
+void Func2(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b);
 
-void Func1(shared_ptr<int64_t> a, shared_ptr<int64_t> b)
+class X
+{
+public:
+	shared_ptr<int64_t> m_value1;
+};
+
+
+void Func1(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b)
 {
 	(*a)++;
 	(*b)++;
+
+	// 여기를 주목!
+	X x;
+	x.m_value1 = b;
+
 	Func2(a, b);
 }
 
-void Func2(shared_ptr<int64_t> a, shared_ptr<int64_t> b)
+void Func2(const shared_ptr<int64_t>& a, const shared_ptr<int64_t>& b)
 {
 	(*a) += g_moo;
 	(*b) += g_moo;
@@ -48,4 +60,5 @@ int main()
 
 	std::cout << "Work took " << elapsedMs << " ms.\n";
 	std::cout << "a=" << *a << ", b=" << *b << endl;
+
 }

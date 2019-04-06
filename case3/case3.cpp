@@ -6,6 +6,7 @@
 #include <memory>
 #include <chrono>
 
+// #TODO 3. raw ptr과 const shared_ptr&의 차이를 비교해보자.
 
 using namespace std;
 using namespace chrono;

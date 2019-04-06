@@ -46,7 +46,7 @@ int main()
 		{
 			for (int i = 0; i < TotalWorkCount; i++)
 			{
-				Func1(a, b); // 아래 thread.join 후, 여기다 debug break 후 refcount를 봅시다.
+				Func1(a, b); // #TODO 4. 아래 thread.join 후, 여기다 debug break 후 refcount를 봅시다.
 			}
 
 			auto t1 = high_resolution_clock::now();
